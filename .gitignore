@@ -3,3 +3,4 @@ __pycache__/
 *.log
 .vscode/
 *.Zone.Identifier
+crypto_db_test/
