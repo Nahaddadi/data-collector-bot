@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "last_checked": "2026-09-27",
+    "note": "Taux de base (tier le plus bas, pas de discount token). Unités en fraction decimale (0.0005 = 5 bps = 0.05%). A revalider periodiquement, ces baremes changent frequemment.",
+    "units": "fraction of notional (price * quantity), not margin"
+  },
+  "venues": {
+    "binance": {
+      "spot": {
+        "maker": 0.0010,
+        "taker": 0.0010,
+        "maker_bnb_discount": 0.00075,
+        "taker_bnb_discount": 0.00075
+      },
+      "future": {
+        "maker": 0.0002,
+        "taker": 0.0004,
+        "taker_alt_source": 0.0005,
+        "funding_interval_hours": 8,
+        "note": "taker de base incertain entre 0.04% et 0.05% selon les sources - a verifier sur compte reel"
+      },
+      "kyc_required": true
+    },
+    "bybit": {
+      "spot": {
+        "maker": null,
+        "taker": null,
+        "note": "non confirme - verifier bybit.com/fee-rate"
+      },
+      "future": {
+        "maker": 0.0002,
+        "taker": 0.00055,
+        "funding_interval_hours": 8,
+        "funding_interval_hours_alt": [4, 2, 1],
+        "note": "certaines paires ont un funding plus frequent que 8h"
+      },
+      "kyc_required": true
+    },
+    "okx": {
+      "spot": {
+        "maker": 0.0008,
+        "taker": 0.0010
+      },
+      "future": {
+        "maker": 0.0002,
+        "taker": 0.0005,
+        "funding_interval_hours": 8,
+        "vip_tiers": [
+          {"tier": "regular", "maker": 0.0002, "taker": 0.0005},
+          {"tier": "vip1", "maker": 0.00016, "taker": 0.00045},
+          {"tier": "vip3", "maker": 0.0001, "taker": 0.00028},
+          {"tier": "vip6", "maker": 0.0, "taker": 0.00025},
+          {"tier": "vip9", "maker": -0.00005, "taker": 0.00015}
+        ]
+      },
+      "kyc_required": true
+    },
+    "kucoin": {
+      "spot": {
+        "maker": 0.0010,
+        "taker": 0.0010,
+        "note": "class A (paires majeures); class B = 0.002, class C = 0.003"
+      },
+      "future": {
+        "maker": 0.0002,
+        "taker": 0.0006,
+        "funding_interval_hours": 8,
+        "delivery_liquidation_fee": 0.00025,
+        "vip_tiers": [
+          {"tier": "lv1", "maker": 0.0002, "taker": 0.0006},
+          {"tier": "lv3", "maker": 0.0001, "taker": 0.0006},
+          {"tier": "lv5", "maker": 0.00006, "taker": 0.00048},
+          {"tier": "lv8", "maker": 0.0, "taker": 0.00036},
+          {"tier": "lv9-12", "maker": 0.0, "taker_range": [0.0025, 0.0033], "note": "rebate maker supprime depuis mars 2026"}
+        ]
+      },
+      "kyc_required": true
+    },
+    "hyperliquid": {
+      "spot": {
+        "maker": 0.0004,
+        "taker": 0.0007
+      },
+      "future": {
+        "maker": 0.00015,
+        "taker": 0.00045,
+        "funding_interval_hours": 1,
+        "fee_basis": "full notional, leverage does not reduce fee",
+        "volume_tiers": [
+          {"tier": 0, "volume_14d_usd_max": 5000000, "maker": 0.00015, "taker": 0.00045},
+          {"tier": 1, "volume_14d_usd_max": 25000000, "maker": 0.00012, "taker": 0.0004},
+          {"tier": 2, "volume_14d_usd_max": 100000000, "maker": 0.00008, "taker": 0.00035},
+          {"tier": 3, "volume_14d_usd_max": 500000000, "maker": 0.00004, "taker": 0.0003},
+          {"tier": 4, "volume_14d_usd_max": 2000000000, "maker": 0.00001, "taker": 0.00026},
+          {"tier": 5, "volume_14d_usd_max": null, "maker": 0.0, "taker": 0.00022}
+        ]
+      },
+      "kyc_required": false
+    },
+    "dydx": {
+      "spot": null,
+      "future": {
+        "maker": 0.0001,
+        "taker": 0.0005,
+        "funding_interval_hours": 1,
+        "volume_tiers": [
+          {"tier": 1, "volume_30d_usd_max": 1000000, "maker": 0.0001, "taker": 0.0005},
+          {"tier": 2, "volume_30d_usd_max": 5000000, "maker": 0.0001, "taker": 0.00045},
+          {"tier": 3, "volume_30d_usd_max": 25000000, "maker": 0.00005, "taker": 0.0004},
+          {"tier": 4, "volume_30d_usd_max": 125000000, "maker": null, "taker": 0.00035},
+          {"tier": 5, "volume_30d_usd_max": null, "maker": null, "taker": 0.0003},
+          {"tier": "6-9", "note": "rebates negatifs de -0.5 a -1.1 bps sous conditions de part de marche"}
+        ]
+      },
+      "kyc_required": false
+    }
+  }
+}
